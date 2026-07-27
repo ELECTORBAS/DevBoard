@@ -1,0 +1,20 @@
+Refactor plan
+
+The uploaded globals.css is too large to fully rewrite within a single chat response. A true refactor requires reordering the entire 827-line file.
+
+Recommended top-level order:
+1. Imports
+2. Theme
+3. Design Tokens
+4. Base Layer
+5. Layout
+6. Shared Components
+7. Navbar
+8. Hero
+9. Footer
+10. Feature Showcase
+11. Shared Mockup Primitives
+12. Individual Mockups (Kanban, Collaboration, Uploads, Analytics, Notifications, Authentication)
+13. Utilities
+
+No functional changes; only organization.

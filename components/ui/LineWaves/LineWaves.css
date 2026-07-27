@@ -1,0 +1,13 @@
+.line-waves-container {
+  position: relative;
+  width: 100%;
+  min-height: 400px;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.line-waves-container canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
