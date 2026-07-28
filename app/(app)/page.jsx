@@ -1,4 +1,4 @@
-import Landing from "./(LandingPage)/Landing"
+import Landing from "./(LandingPage)/Landing";
 
 const page = () => {
   return(
