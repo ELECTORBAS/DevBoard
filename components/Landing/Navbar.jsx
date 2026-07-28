@@ -141,7 +141,7 @@ const Navbar = () => {
           </div>
 
           <div className="navbar__mobile-btn-signin">
-            <Btn title="SignIn" link="/signup" />
+            <Btn title="SignIn" link="/signin" />
           </div>
         </div>
       </div>

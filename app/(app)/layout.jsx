@@ -1,4 +1,8 @@
 import { Poppins, Geist_Mono } from "next/font/google";
+import { Toaster } from "sonner";
+
+import AuthSessionProvider from "@/components/providers/SessionProvider";
+
 import "./globals.css";
 
 const poppins = Poppins({
@@ -24,7 +28,12 @@ export default function RootLayout({ children }) {
       suppressHydrationWarning
       className={`${poppins.className} h-full antialiased overflow-x-hidden`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <AuthSessionProvider>
+          {children}
+        </AuthSessionProvider>
+        <Toaster richColors position="top-center" />
+      </body>
     </html>
   );
 }
