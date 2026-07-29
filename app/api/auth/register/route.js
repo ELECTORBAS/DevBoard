@@ -4,6 +4,7 @@ import { NextResponse } from "next/server";
 
 import { getDb } from "@/lib/db";
 import { users } from "@/lib/db/schema";
+import { buildUsername, getUniqueUsername } from "@/lib/auth/username";
 import { signUpSchema } from "@/lib/validations/auth";
 
 export const dynamic = "force-dynamic";
@@ -37,6 +38,10 @@ export async function POST(request) {
     }
 
     const hashedPassword = await bcrypt.hash(password, 12);
+    const username = await getUniqueUsername({
+      db,
+      base: buildUsername({ name, email }),
+    });
 
     const [user] = await db
       .insert(users)
@@ -44,6 +49,7 @@ export async function POST(request) {
         name,
         email,
         password: hashedPassword,
+        username,
       })
       .returning({
         id: users.id,
