@@ -82,15 +82,15 @@ const Landing = () => {
   );
 
   return (
-    <section ref={landingRef} className="landing-page">
+    <section ref={landingRef} className="landing">
 
       <Navbar />
 
       {/* Hero Section */}
-      <div className="landing-hero">
+      <div className="hero-section">
         <Hero />
 
-        <div className="landing-hero__waves">
+        <div className="hero-section-waves">
           <LineWaves
             speed={0.2}
             innerLineCount={32}
@@ -112,11 +112,11 @@ const Landing = () => {
 
       {/* Tech Logos Section */}
       <div className="tech-logos-section scroll-reveal">
-        <h1 className="tech-logos-section__heading">
+        <h1 className="tech-logos-section-heading">
           Built with modern technologies
         </h1>
 
-        <div className="tech-logos-section__frame">
+        <div className="tech-logos-section-frame">
           <LogoLoop
             logos={techLogos}
             speed={100}

@@ -20,13 +20,13 @@ export default async function DashboardPage() {
   }
 
   return (
-    <section className="dashboard-page">
-      <div className="dashboard-page__card">
-        <p className="dashboard-page__eyebrow">Authenticated</p>
-        <h1 className="dashboard-page__title">
+    <section className="dashboard">
+      <div className="dashboard-card">
+        <p className="dashboard-eyebrow">Authenticated</p>
+        <h1 className="dashboard-title">
           Welcome{session.user?.name ? `, ${session.user.name}` : ""}
         </h1>
-        <p className="dashboard-page__email">{session.user?.email}</p>
+        <p className="dashboard-email">{session.user?.email}</p>
         {session.user?.username && (
           <p className="mt-1 text-sm font-medium text-muted-foreground font-mono">
             @{session.user.username}

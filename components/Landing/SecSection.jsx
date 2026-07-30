@@ -104,7 +104,7 @@ const SecSection = () => {
     <section className="features-showcase">
       {/* Ambient background glow */}
       <div
-        className="features-showcase__glow"
+        className="features-showcase-glow"
         style={{
           width: "600px",
           height: "600px",
@@ -116,17 +116,17 @@ const SecSection = () => {
         }}
       />
 
-      <div className="features-showcase__header">
-        <h1 className="features-showcase__title">
+      <div className="features-showcase-header">
+        <h1 className="features-showcase-title">
           Everything you need to ship projects
         </h1>
 
-        <p className="features-showcase__subtitle">
+        <p className="features-showcase-subtitle">
           Powerful features designed for developers and teams.
         </p>
       </div>
 
-      <div className="features-showcase__grid">
+      <div className="features-showcase-grid">
         <OptionWheel
           items={features.map((f) => f.title)}
           defaultSelected={2}
@@ -143,8 +143,6 @@ const SecSection = () => {
           inset={80}
           loop={false}
           draggable
-          soundUrl="/assets/sounds/click-soft.mp3"
-          soundVolume={0.5}
           onChange={(index) => setSelectedIndex(index)}
         />
 

@@ -16,8 +16,8 @@ const FeaturePreview = ({ feature }) => {
       case "kanban":
         return (
           <div className="mockup-panel">
-            <div className="mockup-panel__header">
-              <span className="mockup-panel__label">Sprint Board</span>
+            <div className="mockup-panel-header">
+              <span className="mockup-panel-label">Sprint Board</span>
               <div className="status-dots">
                 <span className="status-dot" />
                 <span className="status-dot" />
@@ -28,22 +28,22 @@ const FeaturePreview = ({ feature }) => {
             <div className="kanban-board">
               {/* To Do Column */}
               <div className="kanban-column">
-                <div className="kanban-column__header">
-                  <span className="kanban-column__label">To Do</span>
+                <div className="kanban-column-header">
+                  <span className="kanban-column-label">To Do</span>
                   <span className="count-badge">2</span>
                 </div>
 
                 <div className="task-card task-card--hover">
-                  <div className="task-card__title">Landing Page UI</div>
-                  <div className="task-card__meta">
+                  <div className="task-card-title">Landing Page UI</div>
+                  <div className="task-card-meta">
                     <span className="tag-pill tag-pill--sky">UI</span>
                     <span>Jul 30</span>
                   </div>
                 </div>
 
                 <div className="task-card">
-                  <div className="task-card__title">Drizzle Migrations</div>
-                  <div className="task-card__meta">
+                  <div className="task-card-title">Drizzle Migrations</div>
+                  <div className="task-card-meta">
                     <span className="tag-pill tag-pill--neutral">Backend</span>
                     <span>Aug 2</span>
                   </div>
@@ -52,8 +52,8 @@ const FeaturePreview = ({ feature }) => {
 
               {/* In Progress Column */}
               <div className="kanban-column">
-                <div className="kanban-column__header">
-                  <span className="kanban-column__label">In Progress</span>
+                <div className="kanban-column-header">
+                  <span className="kanban-column-label">In Progress</span>
                   <span className="count-badge--accent" style={{ backgroundColor: `${feature.color}15`, color: feature.color }}>1</span>
                 </div>
 
@@ -61,9 +61,9 @@ const FeaturePreview = ({ feature }) => {
                   className="task-card--accent"
                   style={{ border: `1px solid ${feature.color}35`, boxShadow: `0 4px 12px ${feature.color}08` }}
                 >
-                  <div className="task-card__title">OAuth Integration</div>
-                  <p className="task-card__desc">Configure Google Auth client</p>
-                  <div className="task-card__meta">
+                  <div className="task-card-title">OAuth Integration</div>
+                  <p className="task-card-desc">Configure Google Auth client</p>
+                  <div className="task-card-meta">
                     <span className="status-pill" style={{ backgroundColor: feature.color }}>Active</span>
                     <div className="avatar-stack">
                       <div className="avatar-chip avatar-chip--sm bg-blue-600">JD</div>
@@ -75,15 +75,15 @@ const FeaturePreview = ({ feature }) => {
 
               {/* Done Column */}
               <div className="kanban-column">
-                <div className="kanban-column__header">
-                  <span className="kanban-column__label">Done</span>
+                <div className="kanban-column-header">
+                  <span className="kanban-column-label">Done</span>
                   <span className="count-badge">1</span>
                 </div>
 
                 <div className="task-card--done">
-                  <div className="task-card__title--done">Repository Setup</div>
-                  <div className="task-card__meta task-card__meta--done">
-                    <span className="task-card__done-label"><CheckCircle2 className="w-3 h-3 text-emerald-500" /> Done</span>
+                  <div className="task-card-title--done">Repository Setup</div>
+                  <div className="task-card-meta task-card-meta--done">
+                    <span className="task-card-done-label"><CheckCircle2 className="w-3 h-3 text-emerald-500" /> Done</span>
                     <span>Jul 24</span>
                   </div>
                 </div>
@@ -94,10 +94,10 @@ const FeaturePreview = ({ feature }) => {
       case "collaboration":
         return (
           <div className="mockup-panel">
-            <div className="mockup-panel__header">
+            <div className="mockup-panel-header">
               <div className="icon-label">
                 <Users className="w-4 h-4 animate-pulse" style={{ color: feature.color }} />
-                <span className="mockup-panel__label">Team Space</span>
+                <span className="mockup-panel-label">Team Space</span>
               </div>
               <div className="avatar-stack--tight">
                 <div className="avatar-chip avatar-chip--md bg-blue-500">JD</div>
@@ -109,25 +109,25 @@ const FeaturePreview = ({ feature }) => {
 
             <div className="chat-thread">
               <div className="chat-bubble">
-                <div className="chat-bubble__meta">
-                  <span className="chat-bubble__name">Sarah Kelly</span>
+                <div className="chat-bubble-meta">
+                  <span className="chat-bubble-name">Sarah Kelly</span>
                   <span className="timestamp">10:42 AM</span>
                 </div>
-                <p className="chat-bubble__text">I just updated the design specs on Kanban cards. Can someone double-check the landing page requirements?</p>
+                <p className="chat-bubble-text">I just updated the design specs on Kanban cards. Can someone double-check the landing page requirements?</p>
               </div>
 
               <div className="chat-bubble chat-bubble--reply">
-                <div className="chat-bubble__indicator" style={{ backgroundColor: feature.color }} />
-                <div className="chat-bubble__meta">
-                  <span className="chat-bubble__name">John Doe</span>
+                <div className="chat-bubble-indicator" style={{ backgroundColor: feature.color }} />
+                <div className="chat-bubble-meta">
+                  <span className="chat-bubble-name">John Doe</span>
                   <span className="timestamp">10:45 AM</span>
                 </div>
-                <p className="chat-bubble__text">Looks great Sarah! I will claim the OAuth card and start implementation this afternoon.</p>
+                <p className="chat-bubble-text">Looks great Sarah! I will claim the OAuth card and start implementation this afternoon.</p>
               </div>
 
               <div className="typing-indicator">
-                <div className="typing-indicator__dot" />
-                <span className="typing-indicator__text">Alex Miller is typing...</span>
+                <div className="typing-indicator-dot" />
+                <span className="typing-indicator-text">Alex Miller is typing...</span>
               </div>
             </div>
           </div>
@@ -135,8 +135,8 @@ const FeaturePreview = ({ feature }) => {
       case "uploads":
         return (
           <div className="mockup-panel">
-            <div className="mockup-panel__header">
-              <span className="mockup-panel__label">Cloud Storage</span>
+            <div className="mockup-panel-header">
+              <span className="mockup-panel-label">Cloud Storage</span>
               <span className="pill-badge">Cloudinary Secured</span>
             </div>
 
@@ -148,17 +148,17 @@ const FeaturePreview = ({ feature }) => {
               >
                 <UploadCloud className="w-8 h-8 transition-transform duration-300 hover:scale-110" style={{ color: feature.color }} />
                 <div>
-                  <p className="upload-dropzone__title">Drag & drop files here</p>
-                  <p className="upload-dropzone__subtitle">JPEG, PNG, SVG or PDF up to 20MB</p>
+                  <p className="upload-dropzone-title">Drag & drop files here</p>
+                  <p className="upload-dropzone-subtitle">JPEG, PNG, SVG or PDF up to 20MB</p>
                 </div>
               </div>
 
               {/* Uploading Files list */}
               <div className="upload-list">
                 <div className="upload-item">
-                  <div className="upload-item__header">
-                    <span className="upload-item__name">feature-preview.webp</span>
-                    <span className="upload-item__percent" style={{ color: feature.color }}>76%</span>
+                  <div className="upload-item-header">
+                    <span className="upload-item-name">feature-preview.webp</span>
+                    <span className="upload-item-percent" style={{ color: feature.color }}>76%</span>
                   </div>
                   <div className="progress-track">
                     <div
@@ -166,15 +166,15 @@ const FeaturePreview = ({ feature }) => {
                       style={{ width: "76%", backgroundColor: feature.color }}
                     />
                   </div>
-                  <div className="upload-item__meta">
+                  <div className="upload-item-meta">
                     <span>1.2 MB / 1.6 MB</span>
                     <span>1.8 MB/s</span>
                   </div>
                 </div>
 
                 <div className="upload-item--done">
-                  <span className="upload-item__name--done">deployment-config.yaml</span>
-                  <span className="upload-item__status">
+                  <span className="upload-item-name--done">deployment-config.yaml</span>
+                  <span className="upload-item-status">
                     <Check className="w-3.5 h-3.5" /> Complete
                   </span>
                 </div>
@@ -185,10 +185,10 @@ const FeaturePreview = ({ feature }) => {
       case "analytics":
         return (
           <div className="mockup-panel">
-            <div className="mockup-panel__header">
-              <span className="mockup-panel__label">Workspace Metrics</span>
+            <div className="mockup-panel-header">
+              <span className="mockup-panel-label">Workspace Metrics</span>
               <span className="live-indicator">
-                <span className="live-indicator__dot" /> Real-time
+                <span className="live-indicator-dot" /> Real-time
               </span>
             </div>
 
@@ -199,26 +199,26 @@ const FeaturePreview = ({ feature }) => {
                   <span className="stat-label">Sprint Velocity</span>
                   <div className="stat-value">
                     42
-                    <span className="stat-value__delta">+18%</span>
+                    <span className="stat-value-delta">+18%</span>
                   </div>
                 </div>
                 <div className="stat-card">
                   <span className="stat-label">Avg. Cycle Time</span>
                   <div className="stat-value">
-                    2.4<span className="stat-value__unit">days</span>
+                    2.4<span className="stat-value-unit">days</span>
                   </div>
                 </div>
               </div>
 
               {/* Custom SVG Line Chart */}
               <div className="chart-card">
-                <div className="chart-card__gridlines">
-                  <div className="chart-card__gridline" />
-                  <div className="chart-card__gridline" />
-                  <div className="chart-card__gridline" />
+                <div className="chart-card-gridlines">
+                  <div className="chart-card-gridline" />
+                  <div className="chart-card-gridline" />
+                  <div className="chart-card-gridline" />
                 </div>
 
-                <svg className="chart-card__svg" viewBox="0 0 100 30" preserveAspectRatio="none">
+                <svg className="chart-card-svg" viewBox="0 0 100 30" preserveAspectRatio="none">
                   <defs>
                     <linearGradient id={`glowGrad-${feature.id}`} x1="0" y1="0" x2="0" y2="1">
                       <stop offset="0%" stopColor={feature.color} stopOpacity="0.25" />
@@ -246,7 +246,7 @@ const FeaturePreview = ({ feature }) => {
                   <circle cx="90" cy="4" r="1.2" fill="#fff" />
                 </svg>
 
-                <div className="chart-card__labels">
+                <div className="chart-card-labels">
                   <span>Mon</span>
                   <span>Wed</span>
                   <span>Fri</span>
@@ -259,10 +259,10 @@ const FeaturePreview = ({ feature }) => {
       case "notifications":
         return (
           <div className="mockup-panel">
-            <div className="mockup-panel__header">
-              <span className="mockup-panel__label">Inbox Notifications</span>
+            <div className="mockup-panel-header">
+              <span className="mockup-panel-label">Inbox Notifications</span>
               <span className="notif-badge">
-                <span className="notif-badge__dot" /> 3 New
+                <span className="notif-badge-dot" /> 3 New
               </span>
             </div>
 
@@ -271,27 +271,27 @@ const FeaturePreview = ({ feature }) => {
                 className="notif-item"
                 style={{ borderLeft: `3.5px solid ${feature.color}` }}
               >
-                <div className="activity-item__header">
-                  <span className="notif-item__title">Deadline Reminder</span>
+                <div className="activity-item-header">
+                  <span className="notif-item-title">Deadline Reminder</span>
                   <span className="timestamp">Just now</span>
                 </div>
-                <p className="notif-item__text">Task &quot;Database Migration Script&quot; is approaching its scheduled deadline in 2 hours.</p>
+                <p className="notif-item-text">Task &quot;Database Migration Script&quot; is approaching its scheduled deadline in 2 hours.</p>
               </div>
 
               <div className="activity-item activity-item--dim">
-                <div className="activity-item__header">
-                  <span className="activity-item__title">PR Merged</span>
+                <div className="activity-item-header">
+                  <span className="activity-item-title">PR Merged</span>
                   <span className="timestamp--muted">12m ago</span>
                 </div>
-                <p className="activity-item__text">Branch <code>feature/google-oauth</code> was successfully merged into <strong>main</strong>.</p>
+                <p className="activity-item-text">Branch <code>feature/google-oauth</code> was successfully merged into <strong>main</strong>.</p>
               </div>
 
               <div className="activity-item activity-item--dimmer">
-                <div className="activity-item__header">
-                  <span className="activity-item__title">Comment Added</span>
+                <div className="activity-item-header">
+                  <span className="activity-item-title">Comment Added</span>
                   <span className="timestamp--muted">1h ago</span>
                 </div>
-                <p className="activity-item__text">Sarah commented: &quot;Verified the API response payload, works fine.&quot;</p>
+                <p className="activity-item-text">Sarah commented: &quot;Verified the API response payload, works fine.&quot;</p>
               </div>
             </div>
           </div>
@@ -301,17 +301,17 @@ const FeaturePreview = ({ feature }) => {
           <div className="mockup-panel mockup-panel--centered">
             <div className="auth-card">
               <div
-                className="auth-card__icon"
+                className="auth-card-icon"
                 style={{ backgroundColor: `${feature.color}15`, border: `1px solid ${feature.color}25` }}
               >
                 <Lock className="w-5 h-5" style={{ color: feature.color }} />
               </div>
-              <h3 className="auth-card__title">Secure Authorization</h3>
-              <p className="auth-card__subtitle">
+              <h3 className="auth-card-title">Secure Authorization</h3>
+              <p className="auth-card-subtitle">
                 Connect your account via secure OAuth providers.
               </p>
 
-              <div className="auth-card__actions">
+              <div className="auth-card-actions">
                 <button className="google-btn">
                   <svg className="w-3.5 h-3.5" viewBox="0 0 24 24">
                     <path fill="#EA4335" d="M12 5.04c1.66 0 3.2.57 4.38 1.69l3.27-3.27C17.68 1.54 15.02 1 12 1 7.35 1 3.4 3.65 1.54 7.54l3.86 3C6.35 7.54 8.96 5.04 12 5.04z" />
@@ -323,7 +323,7 @@ const FeaturePreview = ({ feature }) => {
                 </button>
               </div>
 
-              <div className="auth-card__note">
+              <div className="auth-card-note">
                 <ShieldCheck className="w-3.5 h-3.5 text-emerald-500" />
                 <span>JWT Session Authentication Active</span>
               </div>
@@ -333,7 +333,7 @@ const FeaturePreview = ({ feature }) => {
       default:
         return (
           <div className="mockup-panel--empty">
-            <p className="mockup-panel__empty-text">
+            <p className="mockup-panel-empty-text">
               {feature.title} Preview
             </p>
           </div>
@@ -344,28 +344,28 @@ const FeaturePreview = ({ feature }) => {
   return (
     <div className="feature-preview">
       <p
-        className="feature-preview__eyebrow"
+        className="feature-preview-eyebrow"
         style={{ color: feature.color }}
       >
         {feature.subtitle}
       </p>
 
-      <h2 className="feature-preview__title">
+      <h2 className="feature-preview-title">
         {feature.title}
       </h2>
 
-      <p className="feature-preview__description">
+      <p className="feature-preview-description">
         {feature.description}
       </p>
 
-      <ul className="feature-preview__bullets">
+      <ul className="feature-preview-bullets">
         {feature.bullets.map((bullet) => (
           <li
             key={bullet}
-            className="feature-preview__bullet"
+            className="feature-preview-bullet"
           >
             <span
-              className="feature-preview__bullet-dot"
+              className="feature-preview-bullet-dot"
               style={{
                 backgroundColor: feature.color,
                 boxShadow: `0 0 8px ${feature.color}`
@@ -378,7 +378,7 @@ const FeaturePreview = ({ feature }) => {
 
       {/* Dynamic Glow Preview Mockup Box */}
       <div
-        className="feature-preview__mockup"
+        className="feature-preview-mockup"
         style={{
           borderColor: `${feature.color}25`,
           boxShadow: `0 20px 45px -10px ${feature.color}15, inset 0 1px 0 0 rgba(255,255,255,0.05)`
@@ -386,14 +386,14 @@ const FeaturePreview = ({ feature }) => {
       >
         {/* Decorative Top Accent Glow Line */}
         <div
-          className="feature-preview__mockup-accent"
+          className="feature-preview-mockup-accent"
           style={{
             backgroundImage: `linear-gradient(to right, ${feature.color}80, ${feature.color}10)`
           }}
         />
 
         {/* Render interactive custom mockup visual */}
-        <div className="feature-preview__mockup-body">
+        <div className="feature-preview-mockup-body">
           {renderVisualMockup()}
         </div>
       </div>

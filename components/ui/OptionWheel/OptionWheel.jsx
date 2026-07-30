@@ -298,7 +298,7 @@ const OptionWheel = ({
           }}
           role="option"
           aria-selected={selectedIndex === index}
-          className={`option-wheel__item${selectedIndex === index ? ' option-wheel__item--selected' : ''}`}
+          className={`option-wheel-item${selectedIndex === index ? ' option-wheel-item--selected' : ''}`}
           onClick={() => handleItemClick(index)}
         >
           {label}

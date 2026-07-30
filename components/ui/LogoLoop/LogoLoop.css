@@ -16,7 +16,7 @@
   padding-bottom: calc(var(--logoloop-logoHeight) * 0.1);
 }
 
-.logoloop__track {
+.logoloop-track {
   display: flex;
   width: max-content;
   will-change: transform;
@@ -25,48 +25,48 @@
   z-index: 0;
 }
 
-.logoloop--vertical .logoloop__track {
+.logoloop--vertical .logoloop-track {
   flex-direction: column;
   height: max-content;
   width: 100%;
 }
 
-.logoloop__list {
+.logoloop-list {
   display: flex;
   align-items: center;
 }
 
-.logoloop--vertical .logoloop__list {
+.logoloop--vertical .logoloop-list {
   flex-direction: column;
 }
 
-.logoloop__item {
+.logoloop-item {
   flex: 0 0 auto;
   margin-right: var(--logoloop-gap);
   font-size: var(--logoloop-logoHeight);
   line-height: 1;
 }
 
-.logoloop--vertical .logoloop__item {
+.logoloop--vertical .logoloop-item {
   margin-right: 0;
   margin-bottom: var(--logoloop-gap);
 }
 
-.logoloop__item:last-child {
+.logoloop-item:last-child {
   margin-right: var(--logoloop-gap);
 }
 
-.logoloop--vertical .logoloop__item:last-child {
+.logoloop--vertical .logoloop-item:last-child {
   margin-right: 0;
   margin-bottom: var(--logoloop-gap);
 }
 
-.logoloop__node {
+.logoloop-node {
   display: inline-flex;
   align-items: center;
 }
 
-.logoloop__item img {
+.logoloop-item img {
   height: var(--logoloop-logoHeight);
   width: auto;
   display: block;
@@ -77,21 +77,21 @@
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.logoloop--scale-hover .logoloop__item {
+.logoloop--scale-hover .logoloop-item {
   overflow: visible;
 }
 
-.logoloop--scale-hover .logoloop__item:hover img,
-.logoloop--scale-hover .logoloop__item:hover .logoloop__node {
+.logoloop--scale-hover .logoloop-item:hover img,
+.logoloop--scale-hover .logoloop-item:hover .logoloop-node {
   transform: scale(1.2);
   transform-origin: center center;
 }
 
-.logoloop--scale-hover .logoloop__node {
+.logoloop--scale-hover .logoloop-node {
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.logoloop__link {
+.logoloop-link {
   display: inline-flex;
   align-items: center;
   text-decoration: none;
@@ -99,11 +99,11 @@
   transition: opacity 0.2s ease;
 }
 
-.logoloop__link:hover {
+.logoloop-link:hover {
   opacity: 0.8;
 }
 
-.logoloop__link:focus-visible {
+.logoloop-link:focus-visible {
   outline: 2px solid currentColor;
   outline-offset: 2px;
 }
@@ -187,12 +187,12 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .logoloop__track {
+  .logoloop-track {
     transform: translate3d(0, 0, 0) !important;
   }
 
-  .logoloop__item img,
-  .logoloop__node {
+  .logoloop-item img,
+  .logoloop-node {
     transition: none !important;
   }
 }

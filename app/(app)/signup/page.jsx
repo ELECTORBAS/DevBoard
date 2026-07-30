@@ -9,8 +9,8 @@ export const metadata = {
 
 export default function SignUpPage() {
   return (
-    <section className="auth-page">
-      <Suspense fallback={<div className="auth-page__card">Loading...</div>}>
+    <section className="auth">
+      <Suspense fallback={<div className="auth-card">Loading...</div>}>
         <AuthForm mode="signup" />
       </Suspense>
     </section>

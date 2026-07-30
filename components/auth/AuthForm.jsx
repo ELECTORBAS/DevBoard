@@ -78,12 +78,12 @@ export default function AuthForm({ mode = "signin" }) {
   };
 
   return (
-    <div className="auth-page__card">
-      <div className="auth-page__header">
-        <h1 className="auth-page__title">
+    <div className="auth-card">
+      <div className="auth-header">
+        <h1 className="auth-title">
           {isSignUp ? "Create your account" : "Welcome back"}
         </h1>
-        <p className="auth-page__subtitle">
+        <p className="auth-subtitle">
           {isSignUp
             ? "Sign up with email or continue with Google."
             : "Sign in to access your DevBoard workspace."}
@@ -92,61 +92,61 @@ export default function AuthForm({ mode = "signin" }) {
 
       <GoogleSignInButton callbackUrl={callbackUrl} />
 
-      <div className="auth-page__divider">
+      <div className="auth-divider">
         <span>or</span>
       </div>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="auth-page__form">
+      <form onSubmit={handleSubmit(onSubmit)} className="auth-form">
         {isSignUp && (
-          <div className="auth-page__field">
-            <label htmlFor="name" className="auth-page__label">
+          <div className="auth-field">
+            <label htmlFor="name" className="auth-label">
               Name
             </label>
             <input
               id="name"
               type="text"
               autoComplete="name"
-              className="auth-page__input"
+              className="auth-input"
               placeholder="Jane Doe"
               {...register("name")}
             />
             {errors.name && (
-              <p className="auth-page__error">{errors.name.message}</p>
+              <p className="auth-error">{errors.name.message}</p>
             )}
           </div>
         )}
 
-        <div className="auth-page__field">
-          <label htmlFor="email" className="auth-page__label">
+        <div className="auth-field">
+          <label htmlFor="email" className="auth-label">
             Email
           </label>
           <input
             id="email"
             type="email"
             autoComplete="email"
-            className="auth-page__input"
+            className="auth-input"
             placeholder="you@example.com"
             {...register("email")}
           />
           {errors.email && (
-            <p className="auth-page__error">{errors.email.message}</p>
+            <p className="auth-error">{errors.email.message}</p>
           )}
         </div>
 
-        <div className="auth-page__field">
-          <label htmlFor="password" className="auth-page__label">
+        <div className="auth-field">
+          <label htmlFor="password" className="auth-label">
             Password
           </label>
           <input
             id="password"
             type="password"
             autoComplete={isSignUp ? "new-password" : "current-password"}
-            className="auth-page__input"
+            className="auth-input"
             placeholder={isSignUp ? "At least 8 characters" : "Your password"}
             {...register("password")}
           />
           {errors.password && (
-            <p className="auth-page__error">{errors.password.message}</p>
+            <p className="auth-error">{errors.password.message}</p>
           )}
         </div>
 
@@ -161,18 +161,18 @@ export default function AuthForm({ mode = "signin" }) {
         </Button>
       </form>
 
-      <p className="auth-page__footer">
+      <p className="auth-footer">
         {isSignUp ? (
           <>
             Already have an account?{" "}
-            <Link href="/signin" className="auth-page__link">
+            <Link href="/signin" className="auth-link">
               Sign in
             </Link>
           </>
         ) : (
           <>
             Don&apos;t have an account?{" "}
-            <Link href="/signup" className="auth-page__link">
+            <Link href="/signup" className="auth-link">
               Sign up
             </Link>
           </>

@@ -230,14 +230,14 @@ export const LogoLoop = memo(
       (item, key) => {
         if (renderItem) {
           return (
-            <li className="logoloop__item" key={key} role="listitem">
+            <li className="logoloop-item" key={key} role="listitem">
               {renderItem(item, key)}
             </li>
           );
         }
         const isNodeItem = 'node' in item;
         const content = isNodeItem ? (
-          <span className="logoloop__node" aria-hidden={!!item.href && !item.ariaLabel}>
+          <span className="logoloop-node" aria-hidden={!!item.href && !item.ariaLabel}>
             {item.node}
           </span>
         ) : (
@@ -258,7 +258,7 @@ export const LogoLoop = memo(
         const itemAriaLabel = isNodeItem ? (item.ariaLabel ?? item.title) : (item.alt ?? item.title);
         const itemContent = item.href ? (
           <a
-            className="logoloop__link"
+            className="logoloop-link"
             href={item.href}
             aria-label={itemAriaLabel || 'logo link'}
             target="_blank"
@@ -270,7 +270,7 @@ export const LogoLoop = memo(
           content
         );
         return (
-          <li className="logoloop__item" key={key} role="listitem">
+          <li className="logoloop-item" key={key} role="listitem">
             {itemContent}
           </li>
         );
@@ -282,7 +282,7 @@ export const LogoLoop = memo(
       () =>
         Array.from({ length: copyCount }, (_, copyIndex) => (
           <ul
-            className="logoloop__list"
+            className="logoloop-list"
             key={`copy-${copyIndex}`}
             role="list"
             aria-hidden={copyIndex > 0}
@@ -309,7 +309,7 @@ export const LogoLoop = memo(
 
     return (
       <div ref={containerRef} className={rootClassName} style={containerStyle} role="region" aria-label={ariaLabel}>
-        <div className="logoloop__track" ref={trackRef} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+        <div className="logoloop-track" ref={trackRef} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
           {logoLists}
         </div>
       </div>

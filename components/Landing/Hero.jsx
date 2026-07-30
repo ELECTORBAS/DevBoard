@@ -13,14 +13,14 @@ const Hero = () => {
     () => {
       const tl = gsap.timeline();
 
-      tl.from(".hero__title", {
+      tl.from(".hero-title", {
         opacity: 0,
         y: 40,
         duration: 1,
         ease: "power3.out",
       })
         .from(
-          ".hero__subtitle",
+          ".hero-subtitle",
           {
             opacity: 0,
             y: 30,
@@ -30,7 +30,7 @@ const Hero = () => {
           "-=0.5"
         )
         .from(
-          ".hero__cta",
+          ".hero-cta",
           {
             opacity: 0,
             y: 20,
@@ -45,16 +45,16 @@ const Hero = () => {
 
   return (
     <section ref={heroRef} className="hero">
-      <div className="hero__content">
-        <h1 className="hero__title">
+      <div className="hero-content">
+        <h1 className="hero-title">
           Manage projects. Track tasks. Ship faster.
         </h1>
 
-        <p className="hero__subtitle">
+        <p className="hero-subtitle">
           A modern project management platform built for developers and teams.
         </p>
 
-        <div className="hero__cta">
+        <div className="hero-cta">
           <Btn title="Get Started" />
         </div>
       </div>

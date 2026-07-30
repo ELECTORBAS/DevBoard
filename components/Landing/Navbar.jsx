@@ -45,43 +45,43 @@ const Navbar = () => {
         visible ? "navbar--visible" : "navbar--hidden"
       }`}
     >
-      <nav className="navbar__inner">
+      <nav className="navbar-inner">
         {/* Logo */}
-        <Link href="/" className="navbar__logo">
+        <Link href="/" className="navbar-logo">
           <Image
             src="/logo.png"
             alt="logo"
             width={24}
             height={24}
-            className="navbar__logo-image"
+            className="navbar-logo-image"
           />
-          <h1 className="navbar__logo-title">DevBoard</h1>
+          <h1 className="navbar-logo-title">DevBoard</h1>
         </Link>
 
         {/* Desktop Links */}
-        <div className="navbar__links">
-          <Link href="/products" className="navbar__link">
+        <div className="navbar-links">
+          <Link href="/products" className="navbar-link">
             Products
           </Link>
 
-          <Link href="/services" className="navbar__link">
+          <Link href="/services" className="navbar-link">
             Services
           </Link>
 
-          <Link href="/about" className="navbar__link">
+          <Link href="/about" className="navbar-link">
             About
           </Link>
         </div>
 
         {/* Right Side */}
-        <div className="navbar__actions">
+        <div className="navbar-actions">
           <ThemeToggle />
 
-          <div className="navbar__btn-signup">
+          <div className="navbar-btn-signup">
             <Btn title="Signup" link="/signup" />
           </div>
 
-          <div className="navbar__btn-signin">
+          <div className="navbar-btn-signin">
             <Btn title="SignIn" link="/signin" />
           </div>
         </div>
@@ -89,22 +89,22 @@ const Navbar = () => {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setOpen(!open)}
-          className="navbar__menu-toggle"
+          className="navbar-menu-toggle"
         >
-          <div className="navbar__menu-icon-wrap">
+          <div className="navbar-menu-icon-wrap">
             <Menu
-              className={`navbar__menu-icon ${
+              className={`navbar-menu-icon ${
                 open
-                  ? "navbar__menu-icon--hidden"
-                  : "navbar__menu-icon--shown"
+                  ? "navbar-menu-icon--hidden"
+                  : "navbar-menu-icon--shown"
               }`}
             />
 
             <X
-              className={`navbar__menu-icon ${
+              className={`navbar-menu-icon ${
                 open
-                  ? "navbar__menu-icon--shown"
-                  : "navbar__menu-icon--hidden-reverse"
+                  ? "navbar-menu-icon--shown"
+                  : "navbar-menu-icon--hidden-reverse"
               }`}
             />
           </div>
@@ -113,13 +113,13 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       <div
-        className={`navbar__mobile-menu ${
+        className={`navbar-mobile-menu ${
           open
-            ? "navbar__mobile-menu--open"
-            : "navbar__mobile-menu--closed"
+            ? "navbar-mobile-menu--open"
+            : "navbar-mobile-menu--closed"
         }`}
       >
-        <div className="navbar__mobile-menu-inner">
+        <div className="navbar-mobile-menu-inner">
           <Link href="/products" onClick={() => setOpen(false)}>
             Products
           </Link>
@@ -136,11 +136,11 @@ const Navbar = () => {
 
           <ThemeToggle />
 
-          <div className="navbar__mobile-btn-signup">
+          <div className="navbar-mobile-btn-signup">
             <Btn title="Signup" link="/signup" />
           </div>
 
-          <div className="navbar__mobile-btn-signin">
+          <div className="navbar-mobile-btn-signin">
             <Btn title="SignIn" link="/signin" />
           </div>
         </div>
