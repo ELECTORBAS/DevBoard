@@ -46,11 +46,31 @@ const OptionWheel = ({
 
   const remPx = typeof window !== 'undefined' ? parseFloat(getComputedStyle(document.documentElement).fontSize) || 16 : 16;
 
-  onChangeRef.current = onChange;
-  cfgRef.current = {
-    count: items.length,
+  useEffect(() => {
+    onChangeRef.current = onChange;
+  }, [onChange]);
+
+  useEffect(() => {
+    cfgRef.current = {
+      count: items.length,
+      items,
+      rowH: Math.max(fontSize * spacing * remPx, 1),
+      curve,
+      tilt,
+      blur,
+      fade,
+      minOpacity,
+      side,
+      loop,
+      smoothing,
+      draggable,
+      soundUrl,
+      soundVolume
+    };
+  }, [
     items,
-    rowH: Math.max(fontSize * spacing * remPx, 1),
+    fontSize,
+    spacing,
     curve,
     tilt,
     blur,
@@ -61,13 +81,14 @@ const OptionWheel = ({
     smoothing,
     draggable,
     soundUrl,
-    soundVolume
-  };
+    soundVolume,
+    remPx
+  ]);
 
   // Single rAF loop that eases the wheel position toward its target with
   // frame-rate independent exponential smoothing, then lays every option out
   // along the curve based on its distance from the current position.
-  const runFrame = useCallback(now => {
+  const runFrame = useCallback(function runFrame(now) {
     const dt = Math.min((now - lastRef.current) / 1000, 0.05);
     lastRef.current = now;
     const cfg = cfgRef.current;

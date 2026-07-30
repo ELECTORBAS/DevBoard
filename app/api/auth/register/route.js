@@ -46,6 +46,7 @@ export async function POST(request) {
     const [user] = await db
       .insert(users)
       .values({
+        id: crypto.randomUUID(),
         name,
         email,
         password: hashedPassword,

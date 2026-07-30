@@ -2,6 +2,7 @@ import { Poppins, Geist_Mono } from "next/font/google";
 import { Toaster } from "sonner";
 
 import AuthSessionProvider from "@/components/providers/SessionProvider";
+import ThemeProvider from "@/components/providers/ThemeProvider";
 
 import "./globals.css";
 
@@ -29,11 +30,14 @@ export default function RootLayout({ children }) {
       className={`${poppins.className} h-full antialiased overflow-x-hidden`}
     >
       <body className="min-h-full flex flex-col">
-        <AuthSessionProvider>
-          {children}
-        </AuthSessionProvider>
-        <Toaster richColors position="top-center" />
+        <ThemeProvider>
+          <AuthSessionProvider>
+            {children}
+          </AuthSessionProvider>
+          <Toaster richColors position="top-center" />
+        </ThemeProvider>
       </body>
     </html>
   );
 }
+

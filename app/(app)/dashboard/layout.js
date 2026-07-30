@@ -1,37 +1,15 @@
-import { Poppins, Geist_Mono } from "next/font/google";
-import { Toaster } from "sonner";
-
-import AuthSessionProvider from "@/components/providers/SessionProvider";
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: "400", // Regular 400
-  display: "swap",
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import DashboardSidebar from "@/components/dashboard/DashboardSidebar";
 
 export const metadata = {
-  title: "DevBoard",
-  description: "A Task Management SaaS Website",
+  title: "Dashboard | DevBoard",
+  description: "Manage your DevBoard tasks and settings",
 };
 
-export default function RootLayout({ children }) {
+export default function DashboardLayout({ children }) {
   return (
-    <html
-      lang="en"
-      suppressHydrationWarning
-      className={`${poppins.className} h-full antialiased overflow-x-hidden`}
-    >
-      <body className="min-h-full flex flex-col">
-        <AuthSessionProvider>
-          {children}
-        </AuthSessionProvider>
-        <Toaster richColors position="top-center" />
-      </body>
-    </html>
+    <div className="min-h-screen flex flex-col md:flex-row bg-background text-foreground">
+      <DashboardSidebar />
+      <main className="flex-1 overflow-y-auto p-4 md:p-8">{children}</main>
+    </div>
   );
 }

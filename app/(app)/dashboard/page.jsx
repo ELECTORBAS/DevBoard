@@ -1,8 +1,8 @@
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
+import Link from "next/link";
 
 import SignOutButton from "@/components/auth/SignOutButton";
-import UsernameSettings from "@/components/settings/UsernameSettings";
 import { getAuthOptions } from "@/lib/auth";
 
 export const dynamic = "force-dynamic";
@@ -27,13 +27,21 @@ export default async function DashboardPage() {
           Welcome{session.user?.name ? `, ${session.user.name}` : ""}
         </h1>
         <p className="dashboard-page__email">{session.user?.email}</p>
-        <p className="dashboard-page__email">
-          @{session.user?.username || "set-your-username"}
-        </p>
-        <div className="mt-4">
-          <UsernameSettings />
+        {session.user?.username && (
+          <p className="mt-1 text-sm font-medium text-muted-foreground font-mono">
+            @{session.user.username}
+          </p>
+        )}
+
+        <div className="mt-6 flex flex-col gap-3">
+          <Link
+            href="/dashboard/settings"
+            className="rounded-lg border border-border px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
+          >
+            Account Settings
+          </Link>
+          <SignOutButton />
         </div>
-        <SignOutButton />
       </div>
     </section>
   );

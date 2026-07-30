@@ -275,7 +275,7 @@ const FeaturePreview = ({ feature }) => {
                   <span className="notif-item__title">Deadline Reminder</span>
                   <span className="timestamp">Just now</span>
                 </div>
-                <p className="notif-item__text">Task "Database Migration Script" is approaching its scheduled deadline in 2 hours.</p>
+                <p className="notif-item__text">Task &quot;Database Migration Script&quot; is approaching its scheduled deadline in 2 hours.</p>
               </div>
 
               <div className="activity-item activity-item--dim">
@@ -291,7 +291,7 @@ const FeaturePreview = ({ feature }) => {
                   <span className="activity-item__title">Comment Added</span>
                   <span className="timestamp--muted">1h ago</span>
                 </div>
-                <p className="activity-item__text">Sarah commented: "Verified the API response payload, works fine."</p>
+                <p className="activity-item__text">Sarah commented: &quot;Verified the API response payload, works fine.&quot;</p>
               </div>
             </div>
           </div>

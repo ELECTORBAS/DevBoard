@@ -1,47 +1,25 @@
 "use client";
 
 import { Moon, Sun } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useTheme } from "next-themes";
+import { useSyncExternalStore } from "react";
 
-const getSystemTheme = () =>
-  window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-
-const applyTheme = (theme) => {
-  document.documentElement.classList.toggle("dark", theme === "dark");
-  document.documentElement.dispatchEvent(new Event("themechange"));
-};
+const emptySubscribe = () => () => {};
+const useHasMounted = () =>
+  useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false
+  );
 
 const ThemeToggle = () => {
-  const [theme, setTheme] = useState(null);
+  const { setTheme, resolvedTheme } = useTheme();
+  const mounted = useHasMounted();
 
-  useEffect(() => {
-    const savedTheme = window.localStorage.getItem("theme");
-    const initialTheme = savedTheme === "light" || savedTheme === "dark" ? savedTheme : getSystemTheme();
-
-    applyTheme(initialTheme);
-    const animationFrame = window.requestAnimationFrame(() => setTheme(initialTheme));
-
-    if (savedTheme) return () => window.cancelAnimationFrame(animationFrame);
-
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    const updateSystemTheme = () => {
-      const systemTheme = getSystemTheme();
-      setTheme(systemTheme);
-      applyTheme(systemTheme);
-    };
-
-    mediaQuery.addEventListener("change", updateSystemTheme);
-    return () => {
-      window.cancelAnimationFrame(animationFrame);
-      mediaQuery.removeEventListener("change", updateSystemTheme);
-    };
-  }, []);
+  const isDark = mounted ? resolvedTheme === "dark" : true;
 
   const toggleTheme = () => {
-    const nextTheme = theme === "dark" ? "light" : "dark";
-    window.localStorage.setItem("theme", nextTheme);
-    setTheme(nextTheme);
-    applyTheme(nextTheme);
+    setTheme(isDark ? "light" : "dark");
   };
 
   return (
@@ -49,10 +27,12 @@ const ThemeToggle = () => {
       type="button"
       onClick={toggleTheme}
       className="theme-toggle"
-      aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
-      title={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
+      aria-label={`Switch to ${isDark ? "light" : "dark"} theme`}
+      title={`Switch to ${isDark ? "light" : "dark"} theme`}
     >
-      <span aria-hidden="true" >{theme === "dark" ? <Sun/> : <Moon/>}</span>
+      <span aria-hidden="true">
+        {mounted ? (isDark ? <Sun /> : <Moon />) : <Moon />}
+      </span>
     </button>
   );
 };

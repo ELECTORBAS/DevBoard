@@ -5,9 +5,17 @@ import { useSession } from "next-auth/react";
 
 export default function UsernameSettings() {
   const { data: session, update } = useSession();
-  const [username, setUsername] = useState(session?.user?.username ?? "");
+  const currentUsername = session?.user?.username ?? "";
+  const [username, setUsername] = useState(currentUsername);
+  const [prevUsername, setPrevUsername] = useState(currentUsername);
   const [status, setStatus] = useState({ type: "idle", message: "" });
   const [loading, setLoading] = useState(false);
+
+  // Sync state if session username changes externally
+  if (currentUsername && currentUsername !== prevUsername) {
+    setPrevUsername(currentUsername);
+    setUsername(currentUsername);
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -37,9 +45,9 @@ export default function UsernameSettings() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-3 rounded-lg border border-slate-200 p-4">
-      <div>
-        <label htmlFor="username" className="mb-1 block text-sm font-medium text-slate-700">
+    <form onSubmit={handleSubmit} className="space-y-4">
+      <div className="space-y-1.5">
+        <label htmlFor="username" className="text-sm font-medium text-foreground">
           Username
         </label>
         <input
@@ -47,21 +55,24 @@ export default function UsernameSettings() {
           type="text"
           value={username}
           onChange={(event) => setUsername(event.target.value)}
-          className="w-full rounded-md border border-slate-300 px-3 py-2"
+          className="h-10 w-full rounded-lg border border-input bg-background px-3 text-sm text-foreground outline-none transition focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/50"
           placeholder="Enter a unique username"
         />
+        <p className="text-xs text-muted-foreground">
+          Your unique handle (e.g. john-doe). Used for mentions and workspace identification.
+        </p>
       </div>
 
       <button
         type="submit"
         disabled={loading}
-        className="rounded-md bg-slate-900 px-4 py-2 text-sm font-medium text-white disabled:opacity-60"
+        className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 disabled:opacity-60"
       >
         {loading ? "Saving..." : "Save username"}
       </button>
 
       {status.message ? (
-        <p className={`text-sm ${status.type === "error" ? "text-red-600" : "text-green-600"}`}>
+        <p className={`text-sm ${status.type === "error" ? "text-destructive" : "text-emerald-500"}`}>
           {status.message}
         </p>
       ) : null}
