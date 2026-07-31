@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
-import { LayoutDashboard, Settings, User, Menu, X } from "lucide-react";
+import { LayoutDashboard, Settings, Menu, X, Bell, Plus } from "lucide-react";
 
 import ThemeToggle from "@/components/Landing/ThemeToggle";
 import SignOutButton from "@/components/auth/SignOutButton";
@@ -13,8 +13,13 @@ import { cn } from "@/lib/utils";
 
 export default function DashboardSidebar() {
   const pathname = usePathname();
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  const userInitial = (session?.user?.name || session?.user?.email || "U")
+    .charAt(0)
+    .toUpperCase();
+  const avatarSrc = session?.user?.image || "/default-avatar.png";
 
   const navLinks = [
     {
@@ -23,9 +28,32 @@ export default function DashboardSidebar() {
       icon: LayoutDashboard,
     },
     {
+      name: "Notifications",
+      href: "/dashboard/notifications",
+      icon: Bell,
+    },
+    {
       name: "Settings",
       href: "/dashboard/settings",
       icon: Settings,
+    },
+  ];
+
+  const projects = [
+    {
+      name: "Project Alpha",
+      href: "/dashboard/projects/alpha",
+      color: "#3b82f6",
+    },
+    {
+      name: "Project Beta",
+      href: "/dashboard/projects/beta",
+      color: "#10b981",
+    },
+    {
+      name: "Project Gamma",
+      href: "/dashboard/projects/gamma",
+      color: "#f59e0b",
     },
   ];
 
@@ -47,7 +75,10 @@ export default function DashboardSidebar() {
             className="rounded-full"
           />
           <div className="flex flex-col">
-            <span className="text-lg font-bold tracking-tight text-sidebar-foreground">
+            <span
+              className="text-lg font-bold tracking-tight text-sidebar-foreground"
+              style={{ fontFamily: "var(--font-audiowide)" }}
+            >
               DevBoard
             </span>
             <span className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold">
@@ -61,55 +92,123 @@ export default function DashboardSidebar() {
           <div className="px-3 pb-2 text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">
             Navigation
           </div>
-          {navLinks.map((link) => {
+          {navLinks.map((link, i) => {
             const Icon = link.icon;
             const isActive = pathname === link.href;
 
             return (
               <Link
-                key={link.href}
+                key={i}
                 href={link.href}
+                onClick={() => setMobileOpen(false)}
+                className={cn(
+                  "flex items-center justify-between gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
+                  isActive
+                    ? "bg-sidebar-accent text-sidebar-accent-foreground font-semibold shadow-xs"
+                    : "text-muted-foreground hover:bg-sidebar-accent/50 hover:text-sidebar-foreground",
+                )}
+              >
+                <span className="flex items-center gap-3">
+                  <Icon
+                    className={cn(
+                      "size-4",
+                      isActive ? "text-primary" : "text-muted-foreground",
+                    )}
+                  />
+                  {link.name}
+                </span>
+
+                {link.name === "Notifications" && (
+                  <span className="flex size-6 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-primary-foreground">
+                    4+
+                  </span>
+                )}
+              </Link>
+            );
+          })}
+          
+        </nav>
+
+        {/* Projects Links */}
+        <nav className="space-y-1 mt-10">
+          <div className="px-3 pb-2 text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">
+            Projects
+          </div>
+          {projects.map((project, i) => {
+            const color = project.color;
+            const isActive = pathname === project.href;
+
+            return (
+              <Link
+                key={i}
+                href={project.href}
                 onClick={() => setMobileOpen(false)}
                 className={cn(
                   "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
                   isActive
                     ? "bg-sidebar-accent text-sidebar-accent-foreground font-semibold shadow-xs"
-                    : "text-muted-foreground hover:bg-sidebar-accent/50 hover:text-sidebar-foreground"
+                    : "text-muted-foreground hover:bg-sidebar-accent/50 hover:text-sidebar-foreground",
                 )}
               >
-                <Icon className={cn("size-4", isActive ? "text-primary" : "text-muted-foreground")} />
-                {link.name}
+                <span
+                  style={{ backgroundColor: color }}
+                  className="size-3 rounded-full"
+                />
+                {project.name}
               </Link>
             );
           })}
+          <Link href={"/dashboard"} className="flex items-center justify-between gap-3 rounded-lg mt-6 px-3 py-2.5 text-sm font-medium transition-colors text-muted-foreground hover:bg-sidebar-accent/50 hover:text-sidebar-foreground">
+            New Project <Plus />
+          </Link>
         </nav>
       </div>
 
       {/* Bottom User Info, Theme Toggle & Logout */}
       <div className="space-y-4 pt-4 border-t border-sidebar-border">
         {/* User Card */}
-        {session?.user && (
-          <div className="flex items-center gap-3 rounded-lg bg-sidebar-accent/40 p-2.5">
-            <div className="flex size-9 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground font-semibold">
-              <User className="size-4" />
-            </div>
-            <div className="flex flex-col overflow-hidden text-left">
-              <span className="text-xs font-semibold text-sidebar-foreground truncate">
-                {session.user.name || "User"}
-              </span>
-              {session.user.username && (
-                <span className="text-[11px] text-muted-foreground font-mono truncate">
-                  @{session.user.username}
-                </span>
-              )}
+        {status === "loading" ? (
+          <div className="flex items-center gap-3 rounded-lg bg-sidebar-accent/40 p-2.5 animate-pulse">
+            <div className="flex size-9 shrink-0 items-center justify-center rounded-full bg-muted/70" />
+            <div className="flex flex-1 flex-col gap-2 overflow-hidden text-left">
+              <div className="h-3 w-24 rounded-full bg-muted/70" />
+              <div className="h-2.5 w-16 rounded-full bg-muted/60" />
             </div>
           </div>
+        ) : (
+          session?.user && (
+            <div className="flex items-center gap-3 rounded-lg bg-sidebar-accent/40 p-2.5">
+              <div className="flex size-9 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground font-semibold">
+                {session.user?.image ? (
+                  <Image
+                    src={avatarSrc}
+                    alt="User Avatar"
+                    width={36}
+                    height={36}
+                    className="rounded-full"
+                  />
+                ) : (
+                  <span>{userInitial}</span>
+                )}
+              </div>
+              <div className="flex flex-col overflow-hidden text-left">
+                <span className="text-xs font-semibold text-sidebar-foreground truncate">
+                  {session.user.name || "User"}
+                </span>
+                {session.user.username && (
+                  <span className="text-[11px] text-muted-foreground font-mono truncate">
+                    @{session.user.username}
+                  </span>
+                )}
+              </div>
+            </div>
+          )
         )}
 
         {/* Actions Bar */}
         <div className="flex items-center justify-between gap-2 px-1">
           <ThemeToggle />
-          <SignOutButton className="mt-0 h-9 px-3 text-xs" variant="outline" />
+          <SignOutButton className="dashboard-sidebar-signout" variant="outline" />
         </div>
       </div>
     </div>
@@ -127,7 +226,12 @@ export default function DashboardSidebar() {
             height={24}
             className="rounded-full"
           />
-          <span className="font-bold text-sidebar-foreground">DevBoard</span>
+          <span
+            className="font-bold text-sidebar-foreground"
+            style={{ fontFamily: "var(--font-audiowide)" }}
+          >
+            DevBoard
+          </span>
         </Link>
 
         <button
@@ -152,7 +256,7 @@ export default function DashboardSidebar() {
       <aside
         className={cn(
           "fixed inset-y-0 left-0 z-50 w-64 bg-sidebar border-r border-sidebar-border transition-transform duration-300 md:hidden",
-          mobileOpen ? "translate-x-0" : "-translate-x-full"
+          mobileOpen ? "translate-x-0" : "-translate-x-full",
         )}
       >
         {sidebarContent}

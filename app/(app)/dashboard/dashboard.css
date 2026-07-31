@@ -1,21 +1,5 @@
 @layer components {
   .dashboard {
     @apply flex min-h-screen items-center justify-center bg-background px-4 py-16;
-
-    .dashboard-card {
-      @apply w-full max-w-lg rounded-2xl border border-border bg-card p-8 text-center shadow-xl;
-    }
-
-    .dashboard-eyebrow {
-      @apply text-xs uppercase tracking-widest text-muted-foreground;
-    }
-
-    .dashboard-title {
-      @apply mt-2 text-3xl font-bold tracking-tight text-foreground;
-    }
-
-    .dashboard-email {
-      @apply mt-2 text-sm text-muted-foreground;
-    }
   }
 }

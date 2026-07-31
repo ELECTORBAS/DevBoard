@@ -55,7 +55,12 @@ const Navbar = () => {
             height={24}
             className="navbar-logo-image"
           />
-          <h1 className="navbar-logo-title">DevBoard</h1>
+          <h1
+            className="navbar-logo-title"
+            style={{ fontFamily: "var(--font-audiowide)" }}
+          >
+            DevBoard
+          </h1>
         </Link>
 
         {/* Desktop Links */}

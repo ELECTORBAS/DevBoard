@@ -9,7 +9,7 @@ export default function SignOutButton({ className, variant = "outline", ...props
     <Button
       variant={variant}
       onClick={() => signOut({ callbackUrl: "/" })}
-      className={cn("mt-6", className)}
+      className={cn("auth-signout-button", className)}
       {...props}
     >
       Sign out

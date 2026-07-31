@@ -8,7 +8,12 @@ const Footer = () => {
         <div className="footer-grid">
           {/* Brand */}
           <div className="footer-brand">
-            <h2 className="footer-brand-title">DevBoard</h2>
+            <h2
+              className="footer-brand-title"
+              style={{ fontFamily: "var(--font-audiowide)" }}
+            >
+              DevBoard
+            </h2>
             <p className="footer-brand-desc">
               A modern project management platform built for developers and
               teams to collaborate, track tasks, and ship faster.
