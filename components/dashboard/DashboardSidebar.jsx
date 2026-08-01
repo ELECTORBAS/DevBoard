@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
-import { LayoutDashboard, Settings, Menu, X, Bell, Plus } from "lucide-react";
+import { LayoutDashboard, Settings, Menu, X, Bell, Plus, UserCircle2 } from "lucide-react";
 
 import ThemeToggle from "@/components/Landing/ThemeToggle";
 import SignOutButton from "@/components/auth/SignOutButton";
@@ -15,6 +15,10 @@ export default function DashboardSidebar() {
   const pathname = usePathname();
   const { data: session, status } = useSession();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const isSettingsPage = pathname?.startsWith("/dashboard/settings");
+  const isCollapsed = isSettingsPage;
+  const shouldExpand = isCollapsed && isHovered;
 
   const userInitial = (session?.user?.name || session?.user?.email || "U")
     .charAt(0)
@@ -31,6 +35,11 @@ export default function DashboardSidebar() {
       name: "Notifications",
       href: "/dashboard/notifications",
       icon: Bell,
+    },
+    {
+      name: "Profile",
+      href: "/dashboard/profile",
+      icon: UserCircle2,
     },
     {
       name: "Settings",
@@ -65,7 +74,7 @@ export default function DashboardSidebar() {
         <Link
           href="/dashboard"
           onClick={() => setMobileOpen(false)}
-          className="flex items-center gap-3 px-2 py-1.5 transition-opacity hover:opacity-90"
+          className="flex items-center gap-3 px-2 py-1.5 transition-[opacity,transform] duration-300 ease-out hover:opacity-90"
         >
           <Image
             src="/logo.png"
@@ -74,24 +83,28 @@ export default function DashboardSidebar() {
             height={32}
             className="rounded-full"
           />
-          <div className="flex flex-col">
-            <span
-              className="text-lg font-bold tracking-tight text-sidebar-foreground"
-              style={{ fontFamily: "var(--font-audiowide)" }}
-            >
-              DevBoard
-            </span>
-            <span className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold">
-              Workspace
-            </span>
-          </div>
+          {(shouldExpand || !isCollapsed) && (
+            <div className="flex flex-col">
+              <span
+                className="text-lg font-bold tracking-tight text-sidebar-foreground"
+                style={{ fontFamily: "var(--font-audiowide)" }}
+              >
+                DevBoard
+              </span>
+              <span className="text-[10px] text-muted-foreground uppercase tracking-wider font-semibold">
+                Workspace
+              </span>
+            </div>
+          )}
         </Link>
 
         {/* Navigation Links */}
         <nav className="space-y-1">
-          <div className="px-3 pb-2 text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">
-            Navigation
-          </div>
+          {(shouldExpand || !isCollapsed) && (
+            <div className="px-3 pb-2 text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">
+              Navigation
+            </div>
+          )}
           {navLinks.map((link, i) => {
             const Icon = link.icon;
             const isActive = pathname === link.href;
@@ -102,7 +115,8 @@ export default function DashboardSidebar() {
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
                 className={cn(
-                  "flex items-center justify-between gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
+                  "flex items-center justify-between gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-[background-color,color,transform,opacity] duration-250 ease-out",
+                  isCollapsed && !shouldExpand && "justify-center px-2",
                   isActive
                     ? "bg-sidebar-accent text-sidebar-accent-foreground font-semibold shadow-xs"
                     : "text-muted-foreground hover:bg-sidebar-accent/50 hover:text-sidebar-foreground",
@@ -115,10 +129,10 @@ export default function DashboardSidebar() {
                       isActive ? "text-primary" : "text-muted-foreground",
                     )}
                   />
-                  {link.name}
+                  {(shouldExpand || !isCollapsed) && <span>{link.name}</span>}
                 </span>
 
-                {link.name === "Notifications" && (
+                {(shouldExpand || !isCollapsed) && link.name === "Notifications" && (
                   <span className="flex size-6 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-primary-foreground">
                     4+
                   </span>
@@ -131,9 +145,11 @@ export default function DashboardSidebar() {
 
         {/* Projects Links */}
         <nav className="space-y-1 mt-10">
-          <div className="px-3 pb-2 text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">
-            Projects
-          </div>
+          {(shouldExpand || !isCollapsed) && (
+            <div className="px-3 pb-2 text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">
+              Projects
+            </div>
+          )}
           {projects.map((project, i) => {
             const color = project.color;
             const isActive = pathname === project.href;
@@ -144,7 +160,8 @@ export default function DashboardSidebar() {
                 href={project.href}
                 onClick={() => setMobileOpen(false)}
                 className={cn(
-                  "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
+                  "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-[background-color,color,transform,opacity] duration-250 ease-out",
+                  isCollapsed && !shouldExpand && "justify-center px-2",
                   isActive
                     ? "bg-sidebar-accent text-sidebar-accent-foreground font-semibold shadow-xs"
                     : "text-muted-foreground hover:bg-sidebar-accent/50 hover:text-sidebar-foreground",
@@ -154,13 +171,15 @@ export default function DashboardSidebar() {
                   style={{ backgroundColor: color }}
                   className="size-3 rounded-full"
                 />
-                {project.name}
+                {(shouldExpand || !isCollapsed) && <span>{project.name}</span>}
               </Link>
             );
           })}
-          <Link href={"/dashboard"} className="flex items-center justify-between gap-3 rounded-lg mt-6 px-3 py-2.5 text-sm font-medium transition-colors text-muted-foreground hover:bg-sidebar-accent/50 hover:text-sidebar-foreground">
-            New Project <Plus />
-          </Link>
+          {(shouldExpand || !isCollapsed) && (
+            <Link href={"/dashboard"} className="flex items-center justify-between gap-3 rounded-lg mt-6 px-3 py-2.5 text-sm font-medium transition-colors text-muted-foreground hover:bg-sidebar-accent/50 hover:text-sidebar-foreground">
+              New Project <Plus />
+            </Link>
+          )}
         </nav>
       </div>
 
@@ -191,16 +210,18 @@ export default function DashboardSidebar() {
                   <span>{userInitial}</span>
                 )}
               </div>
-              <div className="flex flex-col overflow-hidden text-left">
-                <span className="text-xs font-semibold text-sidebar-foreground truncate">
-                  {session.user.name || "User"}
-                </span>
-                {session.user.username && (
-                  <span className="text-[11px] text-muted-foreground font-mono truncate">
-                    @{session.user.username}
+              {(shouldExpand || !isCollapsed) && (
+                <div className="flex flex-col overflow-hidden text-left">
+                  <span className="text-xs font-semibold text-sidebar-foreground truncate">
+                    {session.user.name || "User"}
                   </span>
-                )}
-              </div>
+                  {session.user.username && (
+                    <span className="text-[11px] text-muted-foreground font-mono truncate">
+                      @{session.user.username}
+                    </span>
+                  )}
+                </div>
+              )}
             </div>
           )
         )}
@@ -263,7 +284,15 @@ export default function DashboardSidebar() {
       </aside>
 
       {/* Desktop Sidebar (Fixed Left Column) */}
-      <aside className="hidden md:flex h-screen w-64 shrink-0 flex-col border-r border-sidebar-border bg-sidebar sticky top-0">
+      <aside
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        className={cn(
+          "hidden md:flex h-screen shrink-0 flex-col overflow-hidden border-r border-sidebar-border bg-sidebar sticky top-0 transition-[width,transform,opacity] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]",
+          isCollapsed ? (shouldExpand ? "w-64" : "w-20") : "w-64",
+        )}
+      >
+
         {sidebarContent}
       </aside>
     </>
