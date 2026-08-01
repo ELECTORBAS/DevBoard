@@ -1,4 +1,4 @@
-import { Poppins, Geist_Mono } from "next/font/google";
+import { Poppins, Audiowide } from "next/font/google";
 import { Toaster } from "sonner";
 
 import AuthSessionProvider from "@/components/providers/SessionProvider";
@@ -12,9 +12,11 @@ const poppins = Poppins({
   display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const audiowide = Audiowide({
   subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+  variable: "--font-audiowide",
 });
 
 export const metadata = {
@@ -27,7 +29,7 @@ export default function RootLayout({ children }) {
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${poppins.className} h-full antialiased overflow-x-hidden`}
+      className={`${poppins.className} ${audiowide.variable} h-full antialiased overflow-x-hidden`}
     >
       <body className="min-h-full flex flex-col">
         <ThemeProvider>

@@ -150,7 +150,7 @@ export default function AuthForm({ mode = "signin" }) {
           )}
         </div>
 
-        <Button type="submit" className="w-full" size="lg" disabled={loading}>
+        <Button type="submit" className="auth-submit-btn" size="lg" disabled={loading}>
           {loading
             ? isSignUp
               ? "Creating account..."

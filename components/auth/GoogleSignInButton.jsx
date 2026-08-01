@@ -5,7 +5,7 @@ import { useState } from "react";
 
 function GoogleIcon() {
   return (
-    <svg className="size-4" viewBox="0 0 24 24" aria-hidden="true">
+    <svg className="auth-google-icon" viewBox="0 0 24 24" aria-hidden="true">
       <path
         fill="#EA4335"
         d="M12 5.04c1.66 0 3.2.57 4.38 1.69l3.27-3.27C17.68 1.54 15.02 1 12 1 7.35 1 3.4 3.65 1.54 7.54l3.86 3C6.35 7.54 8.96 5.04 12 5.04z"
@@ -44,10 +44,10 @@ export default function GoogleSignInButton({ callbackUrl = "/dashboard" }) {
       type="button"
       onClick={handleGoogleSignIn}
       disabled={loading}
-      className="google-btn w-full py-2.5 text-sm"
+      className="auth-google-btn"
     >
       <GoogleIcon />
-      {loading ? "Connecting..." : "Continue with Google"}
+      <span>{loading ? "Connecting..." : "Continue with Google"}</span>
     </button>
   );
 }
