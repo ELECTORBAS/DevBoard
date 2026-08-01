@@ -1,8 +1,7 @@
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-import Link from "next/link";
 
-import SignOutButton from "@/components/auth/SignOutButton";
+import DashboardOverview from "@/components/dashboard/DashboardOverview";
 import { getAuthOptions } from "@/lib/auth";
 
 export const dynamic = "force-dynamic";
@@ -20,7 +19,8 @@ export default async function DashboardPage() {
   }
 
   return (
-    <section className="dashboard">
+    <section className="dashboard-page">
+      <DashboardOverview />
     </section>
   );
 }

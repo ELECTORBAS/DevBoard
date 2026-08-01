@@ -271,12 +271,6 @@
       @apply size-4;
     }
 
-    .dashboard-layout {
-      @apply min-h-screen flex flex-col bg-background text-foreground md:flex-row;
-    }
-
-    .dashboard-main {
-      @apply flex-1 overflow-y-auto p-4 md:p-8;
-    }
+    
   }
 }
