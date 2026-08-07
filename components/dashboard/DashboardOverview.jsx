@@ -238,7 +238,7 @@ export default function DashboardOverview() {
             >
               <div className="flex items-start justify-between gap-3">
                 <div
-                  className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${project.accent}`}
+                  className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-linear-to-br ${project.accent}`}
                 >
                   <span className="text-sm font-semibold text-white">
                     {project.name.charAt(0)}
@@ -258,7 +258,7 @@ export default function DashboardOverview() {
                   </p>
                   <div className="mt-3 h-2 rounded-full bg-border">
                     <div
-                      className={`h-2 rounded-full bg-gradient-to-r ${project.accent}`}
+                      className={`h-2 rounded-full bg-linear-to-r ${project.accent}`}
                       style={{ width: `${project.progress}%` }}
                     />
                   </div>

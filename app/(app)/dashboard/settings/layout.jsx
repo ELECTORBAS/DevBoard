@@ -16,7 +16,7 @@ export default function SettingsLayout({ children }) {
 
   return (
     <div className="mx-auto w-full max-w-6xl px-2 py-6 md:px-4 md:py-8">
-      <div className="mb-6 rounded-[28px] border border-border bg-gradient-to-br from-primary/10 via-background to-card/80 p-6 shadow-sm">
+      <div className="mb-6 rounded-[28px] border border-border bg-linear-to-br from-primary/10 via-background to-card/80 p-6 shadow-sm">
         <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="text-sm font-medium uppercase tracking-[0.24em] text-muted-foreground">Workspace settings</p>
