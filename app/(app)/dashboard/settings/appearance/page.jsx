@@ -79,25 +79,6 @@ export default function AppearanceSettingsPage() {
           })}
         </div>
       </section>
-
-      <section className="rounded-[24px] border border-border bg-card/80 p-6 shadow-sm">
-        <div className="mb-4 flex items-center gap-2">
-          <Palette className="size-4 text-primary" />
-          <h2 className="text-lg font-semibold text-foreground">Workspace styling</h2>
-        </div>
-        <div className="grid gap-3 md:grid-cols-2">
-          <div className="rounded-xl border border-border bg-background/70 p-4">
-            <p className="text-sm text-muted-foreground">Theme</p>
-            <p className="mt-1 font-medium text-foreground">{currentThemeLabel}</p>
-          </div>
-          {options.map((item) => (
-            <div key={item.title} className="rounded-xl border border-border bg-background/70 p-4">
-              <p className="text-sm text-muted-foreground">{item.title}</p>
-              <p className="mt-1 font-medium text-foreground">{item.value}</p>
-            </div>
-          ))}
-        </div>
-      </section>
     </div>
   );
 }
